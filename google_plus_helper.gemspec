@@ -14,4 +14,6 @@ Gem::Specification.new do |gem|
   gem.name          = "google_plus_helper"
   gem.require_paths = ["lib"]
   gem.version       = GooglePlusHelper::VERSION
+
+  gem.add_dependency("rails", ">= 3.0")
 end
