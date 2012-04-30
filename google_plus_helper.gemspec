@@ -4,8 +4,8 @@ require File.expand_path('../lib/google_plus_helper/version', __FILE__)
 Gem::Specification.new do |gem|
   gem.authors       = ["chitsaou"]
   gem.email         = ["chitsaou@techbang.com.tw"]
-  gem.description   = %q{TODO: Write a gem description}
-  gem.summary       = %q{TODO: Write a gem summary}
+  gem.description   = %q{Google+ Social Plugins Helpers for Rails}
+  gem.summary       = %q{Easily generate Google+ Social Plugins in Rails application}
   gem.homepage      = ""
 
   gem.files         = `git ls-files`.split($\)
