@@ -3,8 +3,8 @@ require 'google_plus_helper/settings'
 module GooglePlusHelper #:nodoc: all
   class << self
     def settings
-      _settings ||= Settings.new
-      _settings
+      @_settings ||= Settings.new
+      @_settings
     end
   end
 
