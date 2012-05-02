@@ -1,8 +1,26 @@
-# https://developers.google.com/+/
-# Currently there is no support for generating Schema.org meta tags.
-# Please use Open Graph tags.
+# GooglePlusHelper helps you generate Google Plus Social Plugins in your Rails application.
+#
+# See README.md for usage.
+#
+# By default it renders HTML5 version. To switch to XML version, specify the version explicitly in initializer:
+#
+#   # config/initializers/google_plus_helper.rb
+#   GooglePlusHelper.config do |config|
+#     config.social_plugin_version = :xml
+#   end
 module GooglePlusHelper
-  # load google plusone javascript
+  # Generates a <tt><script></tt> tag to load Google Plusone JavaScript file.
+  #
+  # The trivial usage is to load synchonously:
+  #   <%= google_plusone_javascript_include_tag %> #=> <script src="..."></script>
+  #
+  # To load the script asynchronously, use:
+  #   <%= google_plusone_javascript_include_tag(:async => true)
+  #
+  # By default it takes "en-US" as display language. Add <tt>:lang</tt> option to change,
+  # e.g. <tt> :lang => "zh-TW"</tt>
+  #
+  # To load in explicit mode, add <tt>:explicit => true</tt> option.
   def google_plusone_javascript_include_tag(*args)
     options = {
       :async => false,
@@ -32,7 +50,9 @@ module GooglePlusHelper
     end
   end
 
-  def google_social_plugin(plugin_name, options, html_options={})
+  # Generates Google+ Social Plugin html structure.
+  #
+  def google_social_plugin(plugin_name, options, html_options={}) #:nodoc:
     case GooglePlusHelper.settings.social_plugin_version
     when :html5
       html_options.merge! :class => "g-#{plugin_name.to_s}", :data => options
@@ -45,11 +65,16 @@ module GooglePlusHelper
     end
   end
 
-  # google_plusone_button generates plusone button for specific URL
+  # Generates the +1 button for specific URL.
   #
-  # default arguments: (implicitly assigned according to +1 button document)
-  #   size: standard
-  #   annotation: bubble
+  # Arguments:
+  #
+  # * <tt>url</tt>: the URL to +1.
+  # * <tt>options</tt>: (optional) a hash that is identical to the +1 Button attributes listed here[https://developers.google.com/+/plugins/+1button/#plusonetag-parameters].
+  #
+  # Example - A +1 button in medium size and without annotation:
+  #
+  #   <%= google_plusone_button("http://example.com", :size => :medium, :annotation => :none)
   def google_plusone_button(url, *args)
     options = args.extract_options!
     options[:href] = url
@@ -58,6 +83,16 @@ module GooglePlusHelper
     google_social_plugin(:plusone, options, html_options)
   end
 
+  # Generates the "Share on Google+" button for specific URL.
+  #
+  # Arguments:
+  #
+  # * <tt>url</tt>: the URL to +1.
+  # * <tt>options</tt>: (optional) a hash that is identical to the Share Button attributes listed here[https://developers.google.com/+/plugins/share/#sharetag-parameters].
+  #
+  # Example - A Share button aligned to right and with vertical-bubble annotation:
+  #
+  #   <%= google_share_button("http://example.com", :align => :right, :annotation => "vertical-bubble")
   def google_share_button(url, *args)
     options = args.extract_options!
     options.merge! :href => url, :action => :share

@@ -1,4 +1,4 @@
-module GooglePlusHelper
+module GooglePlusHelper #:nodoc: all
   class Settings
     attr_accessor :social_plugin_version
 

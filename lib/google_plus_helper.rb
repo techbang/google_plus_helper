@@ -1,6 +1,6 @@
 require 'google_plus_helper/settings'
 
-module GooglePlusHelper
+module GooglePlusHelper #:nodoc: all
   class << self
     def settings
       _settings ||= Settings.new
