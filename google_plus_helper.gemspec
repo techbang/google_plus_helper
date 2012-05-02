@@ -6,7 +6,7 @@ Gem::Specification.new do |gem|
   gem.email         = ["chitsaou@techbang.com.tw"]
   gem.description   = %q{Google+ Social Plugins Helpers for Rails}
   gem.summary       = %q{Easily generate Google+ Social Plugins in Rails application}
-  gem.homepage      = ""
+  gem.homepage      = "https://github.com/techbang/google_plus_helper"
 
   gem.files         = `git ls-files`.split($\)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
